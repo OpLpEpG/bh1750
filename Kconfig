@@ -1,0 +1,11 @@
+# BH1750 light sensor configuration options
+
+# Copyright (c) 2019 Centaur Analytics, Inc
+# SPDX-License-Identifier: Apache-2.0
+
+config BH1750
+	bool "BH1750 light Sensor"
+	select SENSOR
+	depends on I2C
+	help
+	  Enable driver for BH1750 light sensor.
