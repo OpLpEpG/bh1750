@@ -26,7 +26,7 @@ LOG_MODULE_REGISTER(BH1750);
 static int BH1750_reg_read(struct device *dev, u8_t mode, u16_t *val)
 {
 	struct bh1750_data *drv_data = dev->driver_data;
-	const struct bh1750_dev_config *cfg = dev->config->config_info;
+	const struct bh1750_dev_config *cfg = dev->config_info;
     
 	u8_t res = 0;
 	u8_t b[1], read[2];
@@ -115,7 +115,7 @@ static int BH1750_init(struct device *dev)
         __HAL_RCC_I2C1_RELEASE_RESET();
         LL_I2C_Enable(I2C1);
         LOG_ERR("LL_I2C_IsActiveFlag_BUSY");
-        k_sleep(1000);
+        k_msleep(1000);
 	}
     if (i2c_configure(drv_data->i2c, I2C_SPEED_FAST | I2C_MODE_MASTER) < 0)
     {
