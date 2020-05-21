@@ -82,7 +82,7 @@ static int BH1750_channel_get(struct device *dev, enum sensor_channel chan,
 	{
 		tmp = (s16_t)drv_data->light * 12;
 		val->val1 = tmp / 10; /* lux */
-		val->val2 = tmp % 10;
+		val->val2 = tmp % 10 * 100000;
 		return 0;
 	}
 	else return -ENOTSUP; 
@@ -120,7 +120,7 @@ static int BH1750_init(struct device *dev)
     if (i2c_configure(drv_data->i2c, I2C_SPEED_FAST | I2C_MODE_MASTER) < 0)
     {
         LOG_ERR("i2c_configure");
-    }
+    }//*/
 
 	/* Check the Device ID */
 	// rc = BH1750_device_id_check(dev);
